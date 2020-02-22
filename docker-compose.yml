@@ -1,0 +1,15 @@
+version: '3'
+services:
+    nginx:
+        container_name: nginx
+        build: ./nginx
+        links:
+            - app
+        ports:
+            - 8080:80
+        volumes:
+            - ./nginx/config/conf.d/:/etc/nginx/conf.d/
+    app:
+        build: ./php
+        volumes:
+            - ./web:/var/www
